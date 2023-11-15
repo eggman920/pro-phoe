@@ -6,6 +6,7 @@ import numpy as np
 from typing import List
 
 
+
 req = requests.session()
 
 
@@ -1971,8 +1972,8 @@ def testingsomething():
 
         position="flex",
         width="70%",
-        top="0px",
-        z_index="500",
+        #top="0px",
+        #z_index="500",
 
     ))
 
@@ -2064,8 +2065,18 @@ def index():
     return (
         rx.vstack(navbar(),
         testingsomething(),
+                  rx.vstack(
+                  rx.markdown("""**Step 1**: Click the **Create Ticket** button, This will open a new window for you so sumbit a ticket"""),
+                  rx.markdown("""**Step 2**: **Copy the link** of the ticket you just created which should look something like this - https://t.corp.amazon.com/Vxxxxxx"""),
+                  rx.markdown("""**Step 3**: Click the **Create New Entry** button, you will be directed to a new page. Here you will fill out the corresponding information and paste the link you just copied into the Ticket field. Once all fields are filled click submit"""),
+
+                      padding_top="1em",
+                      width="70%",
+                      align_items="center",
+                  ),
             rx.vstack(
                 rx.tablet_and_desktop(
+
 
                 rx.hstack(
                     rx.heading(
@@ -2077,6 +2088,22 @@ def index():
                             #font_weight="bold",
                             font_size=".9em",
                         )),
+                    rx.link(
+                        rx.button(
+                            "Create Ticket",
+                            border_radius=".3em",
+                            box_shadow="linear-gradient(271.68deg, #4D908E 0.75%, #43AA8B 88.52%)",
+                            bg="linear-gradient(271.68deg, #F8961E 0.75%, #F9C74F 88.52%)",
+                            box_sizing="border-box",
+                            color="black",
+                            opacity="0.8",
+                            _hover={
+                                "opacity": 1,
+                            },
+                        ),
+                        href="https://archer-na.corp.amazon.com/?warehouseID=MIA1",
+                        is_external=True,
+                    ),
                     rx.button(
                         "Create New Entry",
                         on_click=State.onboarding_page,
@@ -2129,7 +2156,7 @@ def index():
                    resizable=True,
                ),
                 rx.divider(),
-                padding_top="6em",
+                padding_top="1em",
                 width="70%",
                 align_items="center",
             ),

@@ -4,9 +4,17 @@ import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, prev
 import { EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
 import "gridjs/dist/theme/mermaid.css"
-import { Box, Button, Divider, Heading, HStack, Image, Link, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tooltip, Tr, useColorMode, VStack } from "@chakra-ui/react"
+import "katex/dist/katex.min.css"
+import { Box, Button, Code, Divider, Heading, HStack, Image, Link, ListItem, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, OrderedList, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tooltip, Tr, UnorderedList, useColorMode, VStack } from "@chakra-ui/react"
 import NextLink from "next/link"
 import { AddIcon, EmailIcon, HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons"
+import ReactMarkdown from "react-markdown"
+import rehypeKatex from "rehype-katex"
+import remarkMath from "remark-math"
+import rehypeRaw from "rehype-raw"
+import remarkGfm from "remark-gfm"
+import { Prism } from "react-syntax-highlighter"
+import { light } from "/styles/code/prism"
 import { Grid as DataTableGrid } from "gridjs-react"
 import NextHead from "next/head"
 
@@ -128,7 +136,7 @@ a new entry below`} shouldWrapChildren={true}>
 </Menu>
 </HStack>
 </Box>
-  <Box sx={{"position": "flex", "width": "70%", "top": "0px", "zIndex": "500"}}>
+  <Box sx={{"position": "flex", "width": "70%"}}>
   <HStack justify={`space-between`} sx={{"borderBottom": "0.5em", "paddingX": "25em", "paddingY": "1em"}}>
   <Box sx={{"align": "center", "bg": state.statbglogic12, "borderRadius": "md", "width": "100%"}}>
   <Stat>
@@ -445,7 +453,18 @@ a new entry below`} shouldWrapChildren={true}>
 </Box>
 </HStack>
 </Box>
-  <VStack alignItems={`center`} sx={{"paddingTop": "6em", "width": "70%"}}>
+  <VStack alignItems={`center`} sx={{"paddingTop": "1em", "width": "70%"}}>
+  <ReactMarkdown components={{"h1": ({node, ...props}) => <Heading {...props} as={`h1`}size={`2xl`} />, "h2": ({node, ...props}) => <Heading {...props} as={`h2`}size={`xl`} />, "h3": ({node, ...props}) => <Heading {...props} as={`h3`}size={`lg`} />, "h4": ({node, ...props}) => <Heading {...props} as={`h4`}size={`md`} />, "h5": ({node, ...props}) => <Heading {...props} as={`h5`}size={`sm`} />, "h6": ({node, ...props}) => <Heading {...props} as={`h6`}size={`xs`} />, "p": ({node, ...props}) => <Text {...props}  />, "ul": ({node, ...props}) => <UnorderedList {...props}  />, "ol": ({node, ...props}) => <OrderedList {...props}  />, "li": ({node, ...props}) => <ListItem {...props}  />, "a": ({node, ...props}) => <Link {...props}  />, "code": ({node, inline, className, children, ...props}) => {     const match = (className || '').match(/language-(?<lang>.*)/);     return !inline ? (         <Prism         children={String(children).replace(/ $/, '')}         language={match ? match[1] : ''}         style={light}         {...props}                  />     ) : (         <Code {...props} >         {children}         </Code>     );       }}} customStyles={{"h1": {"as": "h1", "size": "2xl"}, "h2": {"as": "h2", "size": "xl"}, "h3": {"as": "h3", "size": "lg"}, "h4": {"as": "h4", "size": "md"}, "h5": {"as": "h5", "size": "sm"}, "h6": {"as": "h6", "size": "xs"}}} rehypePlugins={[rehypeKatex, rehypeRaw]} remarkPlugins={[remarkMath, remarkGfm]}>
+  {`**Step 1**: Click the **Create Ticket** button, This will open a new window for you so sumbit a ticket`}
+</ReactMarkdown>
+  <ReactMarkdown components={{"h1": ({node, ...props}) => <Heading {...props} as={`h1`}size={`2xl`} />, "h2": ({node, ...props}) => <Heading {...props} as={`h2`}size={`xl`} />, "h3": ({node, ...props}) => <Heading {...props} as={`h3`}size={`lg`} />, "h4": ({node, ...props}) => <Heading {...props} as={`h4`}size={`md`} />, "h5": ({node, ...props}) => <Heading {...props} as={`h5`}size={`sm`} />, "h6": ({node, ...props}) => <Heading {...props} as={`h6`}size={`xs`} />, "p": ({node, ...props}) => <Text {...props}  />, "ul": ({node, ...props}) => <UnorderedList {...props}  />, "ol": ({node, ...props}) => <OrderedList {...props}  />, "li": ({node, ...props}) => <ListItem {...props}  />, "a": ({node, ...props}) => <Link {...props}  />, "code": ({node, inline, className, children, ...props}) => {     const match = (className || '').match(/language-(?<lang>.*)/);     return !inline ? (         <Prism         children={String(children).replace(/ $/, '')}         language={match ? match[1] : ''}         style={light}         {...props}                  />     ) : (         <Code {...props} >         {children}         </Code>     );       }}} customStyles={{"h1": {"as": "h1", "size": "2xl"}, "h2": {"as": "h2", "size": "xl"}, "h3": {"as": "h3", "size": "lg"}, "h4": {"as": "h4", "size": "md"}, "h5": {"as": "h5", "size": "sm"}, "h6": {"as": "h6", "size": "xs"}}} rehypePlugins={[rehypeKatex, rehypeRaw]} remarkPlugins={[remarkMath, remarkGfm]}>
+  {`**Step 2**: **Copy the link** of the ticket you just created which should look something like this - https://t.corp.amazon.com/Vxxxxxx`}
+</ReactMarkdown>
+  <ReactMarkdown components={{"h1": ({node, ...props}) => <Heading {...props} as={`h1`}size={`2xl`} />, "h2": ({node, ...props}) => <Heading {...props} as={`h2`}size={`xl`} />, "h3": ({node, ...props}) => <Heading {...props} as={`h3`}size={`lg`} />, "h4": ({node, ...props}) => <Heading {...props} as={`h4`}size={`md`} />, "h5": ({node, ...props}) => <Heading {...props} as={`h5`}size={`sm`} />, "h6": ({node, ...props}) => <Heading {...props} as={`h6`}size={`xs`} />, "p": ({node, ...props}) => <Text {...props}  />, "ul": ({node, ...props}) => <UnorderedList {...props}  />, "ol": ({node, ...props}) => <OrderedList {...props}  />, "li": ({node, ...props}) => <ListItem {...props}  />, "a": ({node, ...props}) => <Link {...props}  />, "code": ({node, inline, className, children, ...props}) => {     const match = (className || '').match(/language-(?<lang>.*)/);     return !inline ? (         <Prism         children={String(children).replace(/ $/, '')}         language={match ? match[1] : ''}         style={light}         {...props}                  />     ) : (         <Code {...props} >         {children}         </Code>     );       }}} customStyles={{"h1": {"as": "h1", "size": "2xl"}, "h2": {"as": "h2", "size": "xl"}, "h3": {"as": "h3", "size": "lg"}, "h4": {"as": "h4", "size": "md"}, "h5": {"as": "h5", "size": "sm"}, "h6": {"as": "h6", "size": "xs"}}} rehypePlugins={[rehypeKatex, rehypeRaw]} remarkPlugins={[remarkMath, remarkGfm]}>
+  {`**Step 3**: Click the **Create New Entry** button, you will be directed to a new page. Here you will fill out the corresponding information and paste the link you just copied into the Ticket field. Once all fields are filled click submit`}
+</ReactMarkdown>
+</VStack>
+  <VStack alignItems={`center`} sx={{"paddingTop": "1em", "width": "70%"}}>
   <Box sx={{"alignItems": "right", "paddingTop": "1em", "display": ["none", "block", "block", "block"]}}>
   <HStack>
   <Heading sx={{"fontSize": ["250%", "275%", "300%", "325%", "350%"], "textAlign": "center", "transition": "all 650ms ease"}}>
@@ -453,6 +472,11 @@ a new entry below`} shouldWrapChildren={true}>
   {`Trouble Ticket Tracker`}
 </Text>
 </Heading>
+  <Link as={NextLink} href={`https://archer-na.corp.amazon.com/?warehouseID=MIA1`} isExternal={true}>
+  <Button sx={{"borderRadius": ".3em", "boxShadow": "linear-gradient(271.68deg, #4D908E 0.75%, #43AA8B 88.52%)", "bg": "linear-gradient(271.68deg, #F8961E 0.75%, #F9C74F 88.52%)", "boxSizing": "border-box", "color": "black", "opacity": "0.8", "_hover": {"opacity": 1}}}>
+  {`Create Ticket`}
+</Button>
+</Link>
   <Button onClick={(_e) => addEvents([Event("state.onboarding_page", {})], (_e))} sx={{"bg": "linear-gradient(271.68deg, #277DA1 0.75%, #43AA8B 88.52%)", "color": "black", "opacity": "0.8", "_hover": {"opacity": 1}}}>
   {`Create New Entry`}
 </Button>
@@ -489,33 +513,33 @@ a new entry below`} shouldWrapChildren={true}>
 </Tr>
 </Thead>
   <Tbody>
-  {state.get_users.map((aqflqajn, i) => (
+  {state.get_users.map((ukxejeuv, i) => (
   <Tr key={i}>
   <Td>
-  {aqflqajn.customer_name}
+  {ukxejeuv.customer_name}
 </Td>
   <Td>
-  <Link as={NextLink} href={aqflqajn.email} isExternal={true}>
+  <Link as={NextLink} href={ukxejeuv.email} isExternal={true}>
   <Button sx={{"borderRadius": ".3em", "boxShadow": "linear-gradient(271.68deg, #4D908E 0.75%, #43AA8B 88.52%)", "backgroundImage": "linear-gradient(271.68deg, #4D908E 0.75%, #43AA8B 88.52%)", "boxSizing": "border-box", "color": "black", "opacity": "0.8", "_hover": {"opacity": 1}}}>
   {`link to ticket`}
 </Button>
 </Link>
 </Td>
   <Td>
-  {aqflqajn.gender}
+  {ukxejeuv.gender}
 </Td>
   <Td>
-  {aqflqajn.floor}
+  {ukxejeuv.floor}
 </Td>
   <Td>
-  {aqflqajn.location}
+  {ukxejeuv.location}
 </Td>
   <Td>
-  {aqflqajn.job}
+  {ukxejeuv.job}
 </Td>
   <Td>
   <Tooltip label={` ⚠ Before deleting row, please click the "link to ticket" button and verify that the original ticket has been resolved ⚠`} shouldWrapChildren={true}>
-  <Button onClick={(_e) => addEvents([Event("state.delete_customer", {email:aqflqajn.email})], (_e))} sx={{"bg": "linear-gradient(#F9844A 0.75%, #E1306C 88.52%)", "color": "black", "opacity": "0.8", "_hover": {"opacity": 1}}}>
+  <Button onClick={(_e) => addEvents([Event("state.delete_customer", {email:ukxejeuv.email})], (_e))} sx={{"bg": "linear-gradient(#F9844A 0.75%, #E1306C 88.52%)", "color": "black", "opacity": "0.8", "_hover": {"opacity": 1}}}>
   {`Delete`}
 </Button>
 </Tooltip>
