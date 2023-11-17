@@ -1,6 +1,6 @@
 reflex
 pandas
 requests
-from datetime import datetime
+datetime
 numpy
 tabulate
