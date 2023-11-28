@@ -1552,26 +1552,25 @@ def navbar():
      rx.box(
         rx.hstack(
             rx.tooltip(
-            rx.link(
                 rx.hstack(
                     rx.image(src="MIA1 concept.png", width="50px"),
-                    rx.heading("Create Ticket", size="lg"),
+                        rx.text(
+                        "Project Phoenix",
+                        background_image="linear-gradient(271.68deg, #F8961E 0.75%, #F9C74F 88.52%)",
+                        background_clip="text",
+                        font_family="Helvetica",
+                        font_weight="bold",
+                        font_size="2em",
+                    ),
                 ),
-                href="https://river.amazon.com/?org=fc&buildingId=MIA1",
-                is_external=True
-            ),
-                label="This will open a new tab for creating a ticket.\n"
-                      "The Values in the Dahboard are dependent on the data entered \n"
+                label="The values in the Dashboard are dependent on the data entered \n"
                       "into Table BELOW, named Trouble Ticket Tracker.\n"
                       "Submitting a ticket alone will not update the Dashboard. \n"
                       "You must copy link and paste into link field when creating \n"
                       "a new entry below",
                 should_wrap_children=True),
-            rx.box(rx.color_mode_button(rx.color_mode_icon()),
-            width="25%",
-            height="2rem",
-            display="flex"
-            ),
+            rx.color_mode_button(rx.color_mode_icon()),
+            rx.spacer(),
             rx.menu(
                 rx.menu_button(
                     "Menu", bg="black", color="white", border_radius="md", px=4, py=2
@@ -2082,7 +2081,7 @@ def index():
                     rx.heading(
                         rx.text(
                             "Trouble Ticket Tracker",
-                            background_image="linear-gradient(271.68deg, #277DA1 0.75%, #43AA8B 88.52%)",
+                            background_image="linear-gradient(271.68deg, #F8961E 0.75%, #F9C74F 88.52%)",
                             background_clip="text",
                             font_family= "Helvetica",
                             #font_weight="bold",
@@ -2092,8 +2091,7 @@ def index():
                         rx.button(
                             "Create Ticket",
                             border_radius=".3em",
-                            box_shadow="linear-gradient(271.68deg, #4D908E 0.75%, #43AA8B 88.52%)",
-                            bg="linear-gradient(271.68deg, #F8961E 0.75%, #F9C74F 88.52%)",
+                            bg="linear-gradient(271.68deg, #F8961E 0.75%, #F9C74F 99.52%)",
                             box_sizing="border-box",
                             color="black",
                             opacity="0.8",
@@ -2180,8 +2178,8 @@ style= {
 },}
 # Add state and page to the app.
 app = rx.App(state=State, style=style)
-app.add_page(index)
-app.add_page(add_customer, "/onboarding")
+app.add_page(index, title="Project Phoenix - Home")
+app.add_page(add_customer, "/onboarding", title="Project Phoenix - Audit")
 
 app.compile()
 
