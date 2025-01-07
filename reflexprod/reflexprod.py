@@ -88,7 +88,7 @@ class State(rx.State):
             print(df)
 
         snap = dt.now().strftime('%a %H:%M')
-        slack = 'https://hooks.slack.com/workflows/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'
+        slack = ''
         msg = f'Trouble Ticket Tracker (T3) table below was manually sent at {snap}'
         df = df.to_markdown(tablefmt="plain", index=False)
         req.post(slack, json={"Header": msg, "df": df})
